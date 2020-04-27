@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Добавление сотрудника";
+
+    var IdDep = (List<int>)Model.Id;
+    var NameDep = (List<string>)Model.Name;
+
+}
+
+@using (Html.BeginForm("Add_person_processing", "HR_manager"))
+{
+ <br>
+ <br>
+ <table class="table table-bordered">
+     <tr class="info">
+         <td colspan="2">
+             Добавить сотрудника
+         </td>
+     </tr>
+     <tr>
+         <td width="20%">
+             <label>Фамилия:</label>
+         </td>
+         <td>
+             @Html.TextBox("LastName")
+
+         </td>
+     </tr>
+
+     <tr>
+         <td>
+             <label>Имя:</label>
+         </td>
+         <td>
+             @Html.TextBox("FirsName")
+
+         </td>
+     </tr>
+
+     <tr>
+         <td>
+             <label>Отчество:</label>
+         </td>
+         <td>
+             @Html.TextBox("Mname")
+
+         </td>
+     </tr>
+
+     <tr>
+         <td>
+             <label>E-mail сотрудника:</label>
+         </td>
+         <td>
+             @Html.TextBox("Email")
+             <br>
+             @Html.CheckBox("EmailYes")<small>Направить сотруднику информацию для прохождения тестирования.</small>
+
+         </td>
+     </tr>
+
+     <tr>
+         <td>
+             <label>Подразделение:</label>
+         </td>
+         <td>
+             <select name="IdDep" id="IdDep">
+                 @{
+                    var prom = IdDep.Count();
+                    for (int iii=0;iii<prom;iii++)
+                    {
+                                  <option value="@IdDep[iii]">@NameDep[iii]</option>
+                     }
+                    //Html.DropDownList("NameDep", new SelectList(NameDep));
+                 }
+             </select>
+         </td>
+     </tr>
+
+     <tr>
+         <td colspan="2">
+             @Html.CheckBox("Boss")
+             <label>Руководитель подразделения</label>
+             <br><br>
+             @Html.CheckBox("Candidate")
+             <label>Кандидат</label>
+
+         </td>
+     </tr>
+
+     <tr>
+         <td colspan="2">
+             <input class="btn btn-primary btn-lg btn-block" type="submit" value="Добавить сотрудника">
+         </td>
+     </tr>
+ </table>
+}

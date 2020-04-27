@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "HR_man";
+}
+
+<br>
+@ViewBag.Message
+<br>
+<FIELDSET>
+    <LEGEND>Управление подразделениями</LEGEND>
+    @Html.ActionLink("Добавить подразделение", "Add_department", "HR_manager")
+    <br><br>
+    @Html.ActionLink("Удалить подразделение", "Del_department", "HR_manager")
+    <br><br>
+    @Html.ActionLink("Переименовать подразделение", "Rename_department", "HR_manager")
+    <br><br>
+    @Html.ActionLink("Добавить сотрудника", "Add_person", "HR_manager")
+    <br><br>
+</FIELDSET>
+<FIELDSET>
+    <LEGEND>Просмотр результатов</LEGEND>
+    @Html.ActionLink("Анализ результатов по подразделению", "Rez_department", "HR_manager")
+    <br><br>
+    @Html.ActionLink("Анализ кандидатов", "Analiz_candidates", "HR_manager")
+    <br><br>
+</FIELDSET>
+<FIELDSET>
+    <LEGEND>Прочее</LEGEND>
+    @Html.ActionLink("Расшифровка командных ролей", "Decryption_test","Home")
+</FIELDSET>

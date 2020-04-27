@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Anketa";
+
+    string[] Vopros = new string[7];
+    byte[] nnn = new byte[7];
+    string[,] Answ = new string[7,8];
+    byte[,] NumAns = new byte[7, 8];
+
+    string NameSelectList;
+
+    Vopros = Model.Vopr;
+    nnn = Model.NumV;
+    Answ = Model.Answers;
+    NumAns = Model.NumAnswers;
+    NameSelectList = "";
+}
+<br><br>
+<script>
+    function ValidateForm(event)
+    {
+        StringError = "";
+        for (counter = 0; counter < 7; counter++)
+        {
+            summ = 0;
+            for (counter1 = 0; counter1 < 8; counter1++)
+            {
+                address = "#p" + counter + counter1;
+                ppp = $(address).val();
+                ppp1 = Number.parseInt(ppp);
+                summ += ppp1;
+            }
+
+            if (summ != 10) {
+                StringError = "Сумма баллов в каждом блоке должна равняться 10.";
+
+                for (counter1 = 0; counter1 < 8; counter1++) {
+                    address = "#p" + counter + counter1;
+                    $(address).css('background', 'Tomato');
+                }
+            } else {
+                for (counter1 = 0; counter1 < 8; counter1++) {
+                    address = "#p" + counter + counter1;
+                    $(address).css('background', 'white');
+                }
+            }
+
+        }
+
+        if (StringError == "") {
+            return (true);
+        } else {
+            alert(StringError);
+            return (false);
+        }
+        
+    }
+</script>
+@using (Html.BeginForm("Obrab","Home",FormMethod.Post,new { enctype = "multipart/form-data", onsubmit = "return ValidateForm(event)" }) )
+
+         
+            {
+<table class="table table-bordered">
+    @for (int k = 0; k <= 6; k++)
+    {
+        <tr class="info">
+            <td colspan="2">@Vopros[nnn[k]]
+            </td>
+
+        </tr>
+
+        for (int m = 0; m <= 7; m++)
+        {
+            <tr>
+                <td width="80%">
+                    @Answ[nnn[k], NumAns[nnn[k], m]]
+                </td>
+                <td>
+                    @{
+                        NameSelectList = (string)"p" + nnn[k] + NumAns[nnn[k], m];
+                      } 
+                    @Html.DropDownList(NameSelectList, new SelectList(new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }))
+                </td>
+            </tr>
+        }
+}
+    <tr class="info">
+        <td colspan="2">
+        <br><input class="btn btn-primary btn-lg btn-block" type="submit" value="Завершить тестирование"></td>
+    </tr>
+ </table>
+}
+
+    

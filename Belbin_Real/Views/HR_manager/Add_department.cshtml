@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Добавление подразделения";
+}
+
+@using (Html.BeginForm("Add_depatment_processing", "HR_manager"))
+{
+    <br>
+    <br>
+    <table class="table table-bordered">
+        <tr class="info">
+            <td colspan="2">
+                Добавить подразделение
+            </td>
+        </tr>
+        <tr>
+            <td width="20%">
+                <label>Введите наименование подразделения:</label>
+            </td>
+            <td>
+                @Html.TextBox("Name")
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Добавить">
+            </td>
+        </tr>
+    </table>
+}
+
+
+

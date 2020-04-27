@@ -1,0 +1,219 @@
+﻿@{
+    ViewBag.Title = "Rez_department_processing";
+
+    var PresenceBoss = Model.Boss;
+    var Name = Model.NameDepatment;
+    var FIO = Model.FIO;
+    var CountOfWorkers = FIO.Length;// Определяем количество сотрудников.
+    var prom1 = CountOfWorkers + 2;
+    var Results = Model.Results;
+    var Conclusion = Model.Conclusion;
+    int[] prom = new int[CountOfWorkers];
+    int[] prom2 = new int[CountOfWorkers];
+    MvcHtmlString[] prom4 = new MvcHtmlString[CountOfWorkers];
+    MvcHtmlString prom5 = new MvcHtmlString("<br><small>(Руководитель)</small>");
+    if (PresenceBoss == 1)
+    {
+        prom4[0] = prom5;
+    }
+
+    for (int iii = 0; iii < CountOfWorkers; iii++)
+    {
+        prom[iii] = iii + 1;
+        prom2[iii] = iii;
+    }
+
+    string[,] FormatCell = new string[CountOfWorkers,8];
+    double [] AverageRes = new double[8];
+    string StringForScript = "";
+    string prom3 = "";
+    string[] ListColors = new string[] {"green","red","blue","HotPink", "Orange","LightSeaGreen", "RosyBrown","Teal","Sienna","IndianRed","Coral","MediumAquamarine","Navy","DimGray","Chocolate","Indigo","Goldenrod"};
+
+    for (int iii=0; iii < CountOfWorkers; iii++)
+    {
+        for (int ii1 = 0; ii1 < 8; ii1++)
+        {
+            prom3 += Results[iii, ii1].ToString();
+            if (ii1 < 7) { prom3 += ","; }
+        }
+
+        StringForScript+="{ label: '"+FIO[iii]+"', data: ["+prom3+"], backgroundColor: '"+ListColors[iii]+"', borderColor: '"+ListColors[iii]+"', fill: false}";
+        if (iii != (CountOfWorkers - 1)) { StringForScript += ","; }
+        prom3 = "";
+    }
+
+
+    MvcHtmlString VV = new MvcHtmlString(StringForScript);
+
+    for (int iii = 0; iii < CountOfWorkers; iii++)
+    {
+        for (int ii1=0; ii1<8; ii1++)
+        {
+            AverageRes[ii1] += Results[iii, ii1];
+
+            if (ii1 == 0)//для РП
+            {
+                FormatCell[iii, ii1] = "#FFFFFF";
+                if (Results[iii, ii1] < 7) {FormatCell[iii, ii1] = "#FA8072";}
+                if ((Results[iii, ii1] > 11)&&(Results[iii, ii1]<17)){FormatCell[iii, ii1] = "#98FB98";}
+                if ((Results[iii, ii1] > 16)){FormatCell[iii, ii1] = "#32CD32";}
+            }
+            if (ii1 == 1)//для РК
+            {
+                FormatCell[iii, ii1] = "#FFFFFF";
+                if (Results[iii, ii1] < 7) {FormatCell[iii, ii1] = "#FA8072";}
+                if ((Results[iii, ii1] > 10)&&(Results[iii, ii1]<14)){FormatCell[iii, ii1] = "#98FB98";}
+                if ((Results[iii, ii1] > 13)){FormatCell[iii, ii1] = "#32CD32";}
+            }
+            if (ii1 == 2)//для МТ
+            {
+                FormatCell[iii, ii1] = "#FFFFFF";
+                if (Results[iii, ii1] < 9) {FormatCell[iii, ii1] = "#FA8072";}
+                if ((Results[iii, ii1] > 13)&&(Results[iii, ii1]<18)){FormatCell[iii, ii1] = "#98FB98";}
+                if ((Results[iii, ii1] > 17)){FormatCell[iii, ii1] = "#32CD32";}
+            }
+            if (ii1 == 3)//для ГИ
+            {
+                FormatCell[iii, ii1] = "#FFFFFF";
+                if (Results[iii, ii1] < 5) {FormatCell[iii, ii1] = "#FA8072";}
+                if ((Results[iii, ii1] > 8)&&(Results[iii, ii1]<13)){FormatCell[iii, ii1] = "#98FB98";}
+                if ((Results[iii, ii1] > 12)){FormatCell[iii, ii1] = "#32CD32";}
+            }
+            if (ii1 == 4)//для СН
+            {
+                FormatCell[iii, ii1] = "#FFFFFF";
+                if (Results[iii, ii1] < 7) {FormatCell[iii, ii1] = "#FA8072";}
+                if ((Results[iii, ii1] > 9)&&(Results[iii, ii1]<12)){FormatCell[iii, ii1] = "#98FB98";}
+                if ((Results[iii, ii1] > 11)){FormatCell[iii, ii1] = "#32CD32";}
+            }
+            if (ii1 == 5)//для АН
+            {
+                FormatCell[iii, ii1] = "#FFFFFF";
+                if (Results[iii, ii1] < 6) {FormatCell[iii, ii1] = "#FA8072";}
+                if ((Results[iii, ii1] > 9)&&(Results[iii, ii1]<13)){FormatCell[iii, ii1] = "#98FB98";}
+                if ((Results[iii, ii1] > 12)){FormatCell[iii, ii1] = "#32CD32";}
+            }
+            if (ii1 == 6)//для ВД
+            {
+                FormatCell[iii, ii1] = "#FFFFFF";
+                if (Results[iii, ii1] < 9) {FormatCell[iii, ii1] = "#FA8072";}
+                if ((Results[iii, ii1] > 12)&&(Results[iii, ii1]<17)){FormatCell[iii, ii1] = "#98FB98";}
+                if ((Results[iii, ii1] > 16)){FormatCell[iii, ii1] = "#32CD32";}
+            }
+            if (ii1 == 7)//для КН
+            {
+                FormatCell[iii, ii1] = "#FFFFFF";
+                if (Results[iii, ii1] < 4) {FormatCell[iii, ii1] = "#FA8072";}
+                if ((Results[iii, ii1] > 6)&&(Results[iii, ii1]<10)){FormatCell[iii, ii1] = "#98FB98";}
+                if ((Results[iii, ii1] > 9)){FormatCell[iii, ii1] = "#32CD32";}
+            }
+        }
+
+    }
+
+    for (int iii = 0; iii < 8; iii++)
+    {
+        AverageRes[iii] = Math.Round((AverageRes[iii] / CountOfWorkers)*100)/100;
+    }
+
+}
+
+<br>
+
+<br>
+<table class="table table-bordered">
+    <tr class="info">
+        <td colspan="11">
+            <h2>@Name</h2>
+        </td>
+    </tr>
+
+    <tr align="center">
+        <th>№ п/п</th>
+        <th>Сотрудник</th>
+        <th title="Рабочая пчёлка (Реализатор)">РП</th>
+        <th title="Руководитель (Координатор)">РК</th>
+        <th title="Мотиватор (Творец)">МТ</th>
+        <th title="Генератор идей">ГИ</th>
+        <th title="Снабженец (Исследователь)">СН</th>
+        <th title="Эксперт">АН</th>
+        <th title="Вдохновитель (Дипломат)">ВД</th>
+        <th title="Контролёр (Исполнитель)">КН</th>
+        <th rowspan="@prom1">
+            <canvas id="myChart"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+            <script type="text/javascript">
+                var tit1 = ['РП', 'РК', 'МТ', 'ГИ', 'СН', 'АН', 'ВД', 'КН'];
+
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'radar',
+
+                    // The data for our dataset
+                    data: {
+                        labels: tit1,
+                        datasets:
+                            [@VV
+                            ]
+                    },
+
+                    // Configuration options go here
+                    options: {
+                        legend: {
+                            position: "right"
+                        }
+
+                    }
+                });
+            </script>
+
+        </th>
+
+    </tr>
+
+    @{
+        foreach (int iii in prom2)
+        {
+            <tr align="center">
+                <td>@prom[iii]</td>
+                <td>@FIO[iii] @prom4[iii]
+                </td>
+
+                @for (int iii7 = 0; iii7 < 8; iii7++)
+                {
+                    <td style="background:@FormatCell[iii, iii7]">
+                        @Results[iii, iii7]
+                    </td>
+                }
+            </tr>
+
+        }
+    }
+
+<tr align="center">
+    <td colspan="2">
+        <b>Среднее значение:</b>
+    </td>
+
+    <td><b>@AverageRes[0]</b></td>
+    <td><b>@AverageRes[1]</b></td>
+    <td><b>@AverageRes[2]</b></td>
+    <td><b>@AverageRes[3]</b></td>
+    <td><b>@AverageRes[4]</b></td>
+    <td><b>@AverageRes[5]</b></td>
+    <td><b>@AverageRes[6]</b></td>
+    <td><b>@AverageRes[7]</b></td>
+
+</tr>
+
+    <tr>
+        <td colspan="11">
+            <b>Комментарии:</b><br>
+            @Conclusion
+        </td>
+    </tr>
+</table>
+@Html.ActionLink("Версия для печати", "HR_man", "HR_manager")
+
+

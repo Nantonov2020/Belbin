@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Сотрудник добавлен";
+
+    var Login = Model.Login;
+    var Password = Model.Password;
+    var FirstName = Model.FirstName;
+    var LastName = Model.LastName;
+    var Mname = Model.Mname;
+
+}
+<br>
+<br>@ViewBag.Message
+<table class="table table-bordered">
+    <tr>
+        <td width="20%">
+            <label>Добавлен следующий сотрудник:</label>
+        </td>
+        <td>
+            @LastName @FirstName @Mname
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <label>Логин:</label>
+        </td>
+        <td>
+            @Login
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <label>Пароль:</label>
+        </td>
+        <td>
+            @Password
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            @Html.ActionLink("Вернуться в меню", "HR_man")
+        </td>
+    </tr>
+</table>
+

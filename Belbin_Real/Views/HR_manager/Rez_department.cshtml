@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Выберите подразделение";
+
+        var IdDep = (List<int>)Model.Id;
+        var NameDep = (List<string>)Model.Name;
+}
+
+@using (Html.BeginForm("Rez_department_processing", "HR_manager"))
+{
+    <br>
+    <br>
+    <table class="table table-bordered">
+        <tr class="info">
+            <td colspan="2">
+                Выбрать подразделение
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label>Подразделение:</label>
+            </td>
+            <td>
+                <select name="IdDep" id="IdDep">
+                    @{
+                        var prom = IdDep.Count();
+                        for (int iii = 0; iii < prom; iii++)
+                        {
+                            <option value="@IdDep[iii]">@NameDep[iii]</option>
+                        }
+                        //Html.DropDownList("NameDep", new SelectList(NameDep));
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Продолжить">
+            </td>
+        </tr>
+    </table>
+}
+

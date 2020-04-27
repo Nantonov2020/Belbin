@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Вход в систему";
+ }
+
+@using (Html.BeginForm("Login", "Home"))
+{
+    <br><br>@ViewBag.Message
+    <table class="table table-bordered">
+    <tr class="info">
+        <td colspan="2">
+            Вход в систему
+        </td>
+    </tr>
+    <tr>
+        <td width="20%">
+            <label>Введите логин:</label>
+        </td>
+        <td>
+            @Html.TextBox("Login")
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Введите пароль:</label>
+        </td>
+        <td>
+            @Html.Password("Password")
+
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Войти">
+        </td>
+    </tr>
+</table>
+
+
+        }
