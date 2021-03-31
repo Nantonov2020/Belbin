@@ -20,3 +20,5 @@
 https://github.com/Nantonov2020/belbin_laravel
 
 Подробнее о тесте Белбина: https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C_%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BD%D1%8B%D1%85_%D1%80%D0%BE%D0%BB%D0%B5%D0%B9_%D0%91%D0%B5%D0%BB%D0%B1%D0%B8%D0%BD%D0%B0
+
+Ссылка на скринкаст, показывающий работу проекта: https://youtu.be/dlZyoKz246I
